@@ -1,17 +1,11 @@
 <ul class="list">
-    <li ui-sref=".week[12]" ui-sref-active="current">
-        <a href="javascript:void(0)" >周汇总<span>Week</span></a>
+    <li ng-click="list()" ui-sref=".list" ng-class="{'current':menuClass=='listMenu'}">
+        <a href="javascript:void(0)" >汇总<span>collect</span></a>
     </li>
-    <li ui-sref=".month[12]" ui-sref-active="current">
-        <a href="javascript:void(0)"  class="add">月汇总<span>Month</span></a>
+    <li ng-click="add()" ui-sref=".analyse[12]" ng-class="{'current':menuClass=='analyseMenu'}">
+        <a href="javascript:void(0)"  class="add">分析<span>analyse</span></a>
     </li>
-    <li ui-sref=".area[12]" ui-sref-active="current">
-        <a href="javascript:void(0)" class="same-one" >地区汇总<span>Area</span></a>
-    </li>
-    <li ui-sref=".project[12]" ui-sref-active="current">
-        <a href="javascript:void(0)" class="same-two">项目汇总<span>Project</span></a>
-    </li>
-    <li ui-sref=".driver[12]" ui-sref-active="current">
-        <a href="javascript:void(0)" class="same-two">司机汇总<span>Driver</span></a>
+    <li ng-click="edit()"ui-sref=".constrast[12]" ng-class="{'current':menuClass=='constrastMenu'}">
+        <a href="javascript:void(0)" class="same-one" >对比<span>constrast </span></a>
     </li>
 </ul>

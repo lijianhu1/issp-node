@@ -1,8 +1,18 @@
-<div class="nav-list">
-    <h3 class="header-menu big"><i class="nav-arrow"></i>银行流水管理</h3>
-    <ul class="menu">
-        <li class="active"  ui-sref="_root.statement.info.list" ><a href="javascript:void(0)">银行账户信息</a></li>
-        <li  ui-sref="_root.statement.bankbill.list" ><a href="javascript:void(0)">银行流水</a></li>
-        <li  ui-sref="_root.finance.summary.week[12]" ><a href="javascript:void(0)">汇总分析</a></li>
+<div class="nav-list" ng-repeat="list in showsList">
+    <h3 class="header-menu big" ng-click="showMenu(list,true)"><i class="nav-arrow" ng-class="{true: '', false: 'change-angle'}[list.showIs]"></i>{{list.item}}</h3>
+    <ul class="menu" ng-if="list.menuList.length"  ng-show="list.showIs" ng-repeat="menuInfo in list.menuList">
+        <li ng-click="navClass('info')" ng-class="{'active':navCla=='info'}" ui-sref="_root.statement.info.list" ><a href="javascript:void(0)">{{menuInfo.name}}</a></li>
+        <li ng-click="navClass('bankbill')" ng-class="{'active':navCla=='bankbill'}" ui-sref="_root.statement.bankbill.list" ><a href="javascript:void(0)">{{menuInfo.name2}}</a></li>
+        <li ng-click="navClass('summary')" ng-class="{'active':navCla=='summary'}" ui-sref="_root.statement.summary.list" ><a href="javascript:void(0)">{{menuInfo.name3}}</a></li>
     </ul>
 </div>
+<!--<div class="nav-list" >
+    <h3 class="header-menu big"><i class="nav-arrow" ></i>银行流水管理</h3>
+    <ul class="menu">
+        <li ng-click="navClass('info')" ng-class="{'active':navCla=='info'}" ui-sref="_root.statement.info.list" ><a href="javascript:void(0)">银行账户信息</a></li>
+        <li ng-click="navClass('bankbill')" ng-class="{'active':navCla=='bankbill'}" ui-sref="_root.statement.bankbill.list" ><a href="javascript:void(0)">银行流水</a></li>
+        <li ng-click="navClass('summary')" ng-class="{'active':navCla=='summary'}" ui-sref="_root.statement.summary.list" ><a href="javascript:void(0)">汇总分析</a></li>
+    </ul>
+
+</div>-->
+

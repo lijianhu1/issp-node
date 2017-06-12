@@ -1,0 +1,48 @@
+<ul class="listsearch">
+    <li>
+        <label><i><img src="/images/mandatory.png"></i><em>年份</em></label>
+        <input type="number" ng-model="yea" >
+    </li>
+
+    <li>
+        <label><i><img src="/images/mandatory.png"></i><em>月份</em></label>
+        <input type="number" ng-model="months">
+
+    </li>
+    <li><button ng-click="ConSum(yea,months)">对比</button></li>
+
+</ul>
+<div class="content-tab list">
+    <ul class="table">
+        <li class="list-head">
+            <span></span>
+            <span>年份</span>
+            <span>月份</span>
+            <span>银行流水余额</span>
+            <span>资金流水余额</span>
+            <span>差额</span>
+
+            <!--<span></span>-->
+        </li>
+        <li class="list-all" style="display: {{infoLists._delete?'none':'block'}};">
+            <section>
+                <div class="list-text {{infoLists._selectList?'selectList':''}}" ng-click="selectList(infoLists)">
+                    <p></p>
+                    <p>{{infoLists.year}}</p>
+                    <p>{{infoLists.month}}</p>
+                    <p>{{infoLists.bankBalance}}</p>
+                    <p>{{infoLists.balanceSubtract}}</p>
+                    <p>{{infoLists.fundBalance}}</p>
+                </div>
+
+            </section>
+        </li>
+    </ul>
+
+</div>
+<div ui-view="modal"></div>
+
+
+
+
+

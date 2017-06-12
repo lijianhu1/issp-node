@@ -1,64 +1,83 @@
-<ul class="listsearch">
-    <li>
-        <label>开始时间</label>
-        <input type="text" class="starttime"  onClick="laydate({istime: true, format: 'YYYY-MM-DD'})">
-    </li>
 
-    <li>
-        <label>结束时间</label>
-        <input type="text" class="endtime"  onClick="laydate({istime: true, format: 'YYYY-MM-DD'})">
-
-    </li>
-    <li><button ng-click="weekSum()">汇总</button></li>
-</ul>
 <div class="content-tab list">
+    <ul class="listsearch">
+        <li>
+            <label><i><img src="/images/mandatory.png"></i><em>年份</em></label>
+            <input type="number" ng-model="yea">
+        </li>
+
+        <li>
+            <label><i><img src="/images/mandatory.png"></i><em>月份</em></label>
+            <input type="number" ng-model="months">
+
+        </li>
+        <li>
+            <div>
+                <label><em>账号名称</em></label>
+                <select ng-model="bank">
+                    <option ng-repeat="account in accounts">{{account.name}}</option>
+                </select>
+            </div>
+
+        </li>
+        <li><button ng-click="fn(yea,months,bank)">汇总</button> <button ng-click="weekSum()">导出</button></li>
+    </ul>
     <ul class="table">
         <li class="list-head">
             <span></span>
-            <span>出车日期</span>
-            <span>单号</span>
-            <span>司机名称</span>
-            <span>地区</span>
-            <span>用车人</span>
-            <span>项目</span>
-            <span>项目组</span>
+            <span style="display:none;">汇总编号</span>
+            <span>银行名称</span>
+            <span>年份</span>
+            <span>月份</span>
+            <span>收入(贷方金额)</span>
+            <span>支出(借方金额)</span>
+            <span>余额</span>
             <span></span>
+            <!--<span></span>-->
         </li>
-        <li class="list-all" ng-repeat="list in listWeeks">
+        <li class="list-all" style="display: {{infoLists._delete?'none':'block'}};">
             <section>
-                <div class="list-text">
-                    <p>{{$index+1}}</p>
-                    <p>{{list.date}}</p>
-                    <p>{{list.number}}</p>
-                    <p>{{list.driver}}</p>
-                    <p>{{list.area}}</p>
-                    <p>{{list.carUser}}</p>
-                    <p>{{list.project}}</p>
-                    <p>{{list.projectGroup}}</p>
-                    <p>
-                        <a href="javascript:void(0)" class="more"  ng-click="moreList(list)">更多详细</a>
+                <div class="list-text {{infoLists._selectList?'selectList':''}}" ng-click="selectList(infoLists)"><!---->
+                   <p></p>
+                    <p style="display:none;">{{infoLists.id}}</p>
+                    <p>{{infoLists.bank}}</p>
+                    <p>{{infoLists.year}}</p>
+                    <p>{{infoLists.month}}</p>
+                    <p>{{infoLists.creditorCost}}</p>
+                    <p>{{infoLists.debtorCost}}</p>
+                    <p>{{infoLists.balance}}</p>
+                    <p style="display: {{infoLists?'block':'none'}};">
+                        <a href="javascript:void(0)" class="more" ng-click="bankSel(infoLists.id)">更多详细</a>
                     </p>
                 </div>
                 <div class="can">
-                    <ul class="can-see" style="display: {{list._moreList?'block':'none'}};">
+                    <ul class="can-see" style="display: {{infoLists2._selectList2?'block':'none'}};">
                         <li>
-                            <p class="see-parent">
-                                <span>科目</span>
-                                <span>油费</span>
-                                <span>加班时长</span>
-                                <span>加班费</span>
-                                <span>餐费补贴</span>
-                                <span>停车/过路费</span>
-                                <span>金额</span>
+                            <!--class="see-parent"   -->
+                            <p  class="list-text {{infoLists2._selectList2?'selectList2':''}}"><!-- -->
+                                <span>账号</span>
+                                <span>卡号</span>
+                                <span>公司</span>
+                                <span>银行</span>
+                                <span>银行地址</span>
+                                <span>类型</span>
+                                <span>日期</span>
+                                <span>收入(贷方金额)</span>
+                                <span>支出(借方金额)</span>
+                                <span>余额</span>
                             </p>
                             <p class="see-children">
-                                <span>{{list.acctype|cover}}</span>
-                                <span>{{list.oilCost}}</span>
-                                <span>{{list.overWorkTime}}</span>
-                                <span>{{list.overWorkCost}}</span>
-                                <span>{{list.mealCost}}</span>
-                                <span>{{list.parkCost}}</span>
-                                <span>{{list.roadCost}}</span>
+                                <span>{{infoLists2.name}}</span>
+                                <span>{{infoLists2.number}}</span>
+                                <span>{{infoLists2.cardNumber}}</span>
+                                <span>{{infoLists2.company}}</span>
+                                <span>{{infoLists2.bank}}</span>
+                                <span>{{infoLists2.bankAddress}}</span>
+                                <span>{{infoLists2.type}}</span>
+                                <span>{{infoLists2.recordDate}}</span>
+                                <span>{{infoLists2.creditorCost}}</span>
+                                <span>{{infoLists2.debtorCost}}</span>
+                                <span>{{infoLists2.balance}}</span>
                             </p>
                         </li>
                     </ul>
@@ -67,7 +86,6 @@
         </li>
     </ul>
 </div>
-<div ui-view="modal"></div>
 
 
 

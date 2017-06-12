@@ -28,8 +28,46 @@ module.exports = function(){
             }));
     }).get('/countInfo', function*(){
         var $self = this;
-
         yield (server().countInfo()
+            .then((parsedBody) =>{
+                var responseText = JSON.parse(parsedBody);
+                $self.body = responseText;
+            }).catch((error) =>{
+                $self.set('Content-Type', 'application/json;charset=utf-8');
+                $self.body = error.error;
+                console.error(error.error);
+            }));
+    }).get('/collectlistInfo', function*(){//汇总列表信息查询analyselistInfo
+        var $self = this;
+        var page = $self.request.query;
+        page.token=$self.cookies.get("token");
+        yield (server().collectlistInfo(page)
+            .then((parsedBody) =>{
+                var responseText = JSON.parse(parsedBody);
+                $self.body = responseText;
+            }).catch((error) =>{
+                $self.set('Content-Type', 'application/json;charset=utf-8');
+                $self.body = error.error;
+                console.error(error.error);
+            }));
+    }).get('/analyselistInfo', function*(){//分析列表信息查询
+        var $self = this;
+        var page = $self.request.query;
+        page.token=$self.cookies.get("token");
+        yield (server().analyselistInfo(page)
+            .then((parsedBody) =>{
+                var responseText = JSON.parse(parsedBody);
+                $self.body = responseText;
+            }).catch((error) =>{
+                $self.set('Content-Type', 'application/json;charset=utf-8');
+                $self.body = error.error;
+                console.error(error.error);
+            }));
+    }).get('/constrastlistInfo', function*(){//对比列表信息查询
+        var $self = this;
+        var page = $self.request.query;
+        page.token=$self.cookies.get("token");
+        yield (server().constrastlistInfo(page)
             .then((parsedBody) =>{
                 var responseText = JSON.parse(parsedBody);
                 $self.body = responseText;
@@ -54,6 +92,7 @@ module.exports = function(){
     }).get('/getInfo', function*(){
         var $self = this;
         var getId = $self.request.query;
+        getId.token = $self.cookies.get('token');
         yield (server().getInfo(getId)
             .then((parsedBody) =>{
                 var responseText = JSON.parse(parsedBody);
@@ -103,6 +142,7 @@ module.exports = function(){
     }).get('/bankself', function*(){
         var $self = this;
         var bankself = $self.request.query;
+        bankself.token = $self.cookies.get("token");
         yield (server().bankself(bankself)
             .then((parsedBody) =>{
                 var responseText = JSON.parse(parsedBody);
@@ -147,6 +187,44 @@ module.exports = function(){
             console.info(body);
             $self.body = body;
         }));
+    }).get('/bankcountInfo', function*(){   //银行流水总条数
+        var $self = this;
+        yield (server().collectCount()
+            .then((parsedBody) =>{
+                var responseText = JSON.parse(parsedBody);
+                $self.body = responseText;
+            }).catch((error) =>{
+                $self.set('Content-Type', 'application/json;charset=utf-8');
+                $self.body = error.error;
+                console.error(error.error);
+            }));
+    }).get('/listBankbill', function*(){
+        var $self = this;
+        var page = $self.request.query;
+        page.token=$self.cookies.get("token");
+        yield (server().listBankbill(page)
+            .then((parsedBody) =>{
+                var responseText = JSON.parse(parsedBody);
+                $self.body = responseText;
+            }).catch((error) =>{
+                $self.set('Content-Type', 'application/json;charset=utf-8');
+                $self.body = error.error;
+                console.error(error.error);
+            }));
+    }).get('/delBankbill', function*(){
+        var $self = this;
+        var delId = $self.request.query;
+        delId.token = $self.cookies.get("token");
+        yield (server().delBankbill(delId)
+            .then((parsedBody) =>{
+                var responseText = JSON.parse(parsedBody);
+                $self.body = responseText;
+            }).catch((error) =>{
+                $self.set('Content-Type', 'application/json;charset=utf-8');
+                $self.body = error.error;
+                console.error(error.error);
+            }));
     });
     return router;
 };
+

@@ -24,13 +24,35 @@
                     <option ng-repeat="account in accounts" value={{account.id}}>{{account.name}}</option>
                 </select>
             </div>
+            <div>
+                <label><i><img src="/images/mandatory.png"></i><em>收入(贷方金额)</em></label>
+                <select ng-model="creditorCost">
+                    <option value="">请选择账号</option>
+                </select>
+            </div>
+            <div>
+                <label><i><img src="/images/mandatory.png"></i><em>支出(借方金额)</em></label>
+                <select ng-model="debtorCost">
+                    <option value="">请选择账号</option>
+                </select>
+            </div>
+            <div>
+                <label><i><img src="/images/mandatory.png"></i><em>余额</em></label>
+                <select ng-model="balance">
+                    <option value="">请选择账号</option>
+                </select>
+            </div>
+            <div>
+                <label><i><img src="/images/mandatory.png"></i><em>流水日期</em></label>
+                <select ng-model="recordDate">
+                    <option value="">请选择账号</option>
+                </select>
+            </div>
             <div class="btn">
                 <button ng-click="updataSel()">浏览</button>
                 <button ng-click="upload()">上传</button>
             </div>
         </div>
-
-
     </section>
 </div>
 

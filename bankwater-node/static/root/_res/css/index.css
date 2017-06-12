@@ -99,6 +99,16 @@ body {
   display: flex;
 }
 
+/*菜单*/
+.change-angle{
+  margin-top: -8px;
+  transform:rotate(270deg);
+  -ms-transform:rotate(270deg); 	/* IE 9 */
+  -moz-transform:rotate(270deg); 	/* Firefox */
+  -webkit-transform:rotate(270deg); /* Safari 和 Chrome */
+  -o-transform:rotate(270deg); 	/* Opera */
+}
+
 .left-section {
   width: 200px;
   height: 100%;

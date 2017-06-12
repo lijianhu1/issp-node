@@ -1,37 +1,27 @@
 var app = angular.module('summaryServer',[]);
 app.factory('summarySer',function ($http) {
     return {
-        listWeek : listWeek,
-        listMonth : listMonth,
-        listArea:listArea,
-        areaAna:areaAna,
-        listProject:listProject,
-        proAnalysis:proAnalysis,
-        listDriver:listDriver,
-        driAnalysis:driAnalysis
+        bankSelf:bankSelf,
+        listAccount:listAccount,
+        collectlistInfo:collectlistInfo,
+        analyselistInfo:analyselistInfo,
+        constrastlistInfo:constrastlistInfo,
     };
-    function listWeek(data) {
-        return $http.get('/listWeek',{params:data})
+
+    function bankSelf(data) {
+        return $http.get('/bankself',{params:data})
     }
-    function listMonth(data) {
-        return $http.get('/listMonth',{params:data})
+    function listAccount() {
+        return $http.get('/listaccount')
     }
-    function listArea(data) {
-        return $http.get('/listArea',{params:data})
+
+    function collectlistInfo(data){
+        return $http.get('/collectlistInfo',{params:data})
     }
-    function areaAna(data) {
-        return $http.get('/areaAna',{params:data})
+    function analyselistInfo(data){
+        return $http.get('/analyselistInfo',{params:data})
     }
-    function listProject(data) {
-        return $http.get('/listProject',{params:data})
-    }
-    function proAnalysis(data) {
-        return $http.get('/proAnalysis',{params:data})
-    }
-    function listDriver(data) {
-        return $http.get('/listDriver',{params:data})
-    }
-    function driAnalysis(data) {
-        return $http.get('/driAnalysis',{params:data})
+    function constrastlistInfo(data){
+        return $http.get('/constrastlistInfo',{params:data})
     }
 });

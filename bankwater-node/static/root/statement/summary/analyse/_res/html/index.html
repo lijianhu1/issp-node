@@ -1,0 +1,85 @@
+<meta charset="UTF-8">
+<ul class="listsearch">
+    <li>
+        <label><i><img src="/images/mandatory.png"></i><em>年份</em></label>
+        <input type="number" ng-model="yea">
+    </li>
+
+    <li>
+        <label><i><img src="/images/mandatory.png"></i><em>月份</em></label>
+        <input type="number" ng-model="months">
+
+    </li>
+    <li>
+        <div>
+            <label><em>账号名称</em></label>
+            <select ng-model="bank">
+                <option ng-repeat="account in accounts">{{account.name}}</option>
+            </select>
+        </div>
+    </li>
+    <li><button ng-click="Anfn(yea,months,bank)">分析</button> <button ng-click="weekSum()">导出</button></li>
+
+</ul>
+<div class="content-tab list">
+    <ul class="table">
+        <li class="list-head">
+            <span></span>
+            <span>银行名称</span>
+            <span>年份</span>
+            <span>月份</span>
+            <span>本月收入(贷方金额)</span>
+            <span>上月收入(贷方金额)</span>
+            <span>收入差额</span>
+            <span>收入比例</span>
+            <span></span>
+        </li>
+        <li class="list-all" style="display: {{infoLists._delete?'none':'block'}};">
+            <section>
+                <div class="list-text {{infoLists._selectList?'selectList':''}}" ng-click="selectList(infoLists)">
+                   <p><!--{{$index+1}}--></p>
+                    <p>{{infoLists.bank}}</p>
+                    <p>{{infoLists.year}}</p>
+                    <p>{{infoLists.month}}</p>
+                    <p>{{infoLists.currentCreditorCost}}</p>
+                    <p>{{infoLists.lastCreditorCost}}</p>
+                    <p>{{infoLists.creditorSubtract}}</p>
+                    <p>{{infoLists.creditorRate}}</p>
+                    <p style="display: {{infoLists?'block':'none'}};">
+                        <a href="javascript:void(0)" class="more"ng-click="moreList(infoLists)">更多详细</a>
+                    </p>
+                </div>
+                <div class="can">
+                    <ul class="can-see" style="display: {{infoLists._moreList?'block':'none'}};">
+                        <li>
+                            <p class="see-parent">
+
+                                <span>收入增长率</span>
+                                <span>本月支出(借方金额)</span>
+                                <span>上月支出(借方金额)</span>
+                                <span>支出差额</span>
+                                <span>支出比例</span>
+                                <span>支出增长率</span>
+                            </p>
+                            <p class="see-children">
+                                <span>{{infoLists.creditorGrow}}</span>
+                                <span>{{infoLists.currentDebtorCost}}</span>
+                                <span>{{infoLists.lastDebtorCost}}</span>
+                                <span>{{infoLists.debtorSubtract}}</span>
+                                <span>{{infoLists.debtorRate}}</span>
+                                <span>{{infoLists.debtorGrow}}</span>
+                            </p>
+                        </li>
+                    </ul>
+                </div>
+            </section>
+        </li>
+    </ul>
+</div>
+<div ui-view="modal"></div>
+
+
+
+
+
+

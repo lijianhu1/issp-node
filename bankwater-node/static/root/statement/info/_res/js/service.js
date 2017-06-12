@@ -1,14 +1,14 @@
 var app = angular.module('infoServer',[]);
 app.factory('infoSer',function ($http) {
     return {
-        listInfo : listInfo,
+        listInfo :listInfo,
         countInfo:countInfo,
         addInfo:addInfo,
         getInfo:getInfo,
         editInfo:editInfo,
         delInfo:delInfo
     };
-    function listInfo(data) {
+    function listInfo(data){
         return $http.get('/listInfo',{params:data})
     }
     function countInfo() {

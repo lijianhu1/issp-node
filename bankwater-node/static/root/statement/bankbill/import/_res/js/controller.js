@@ -6,29 +6,34 @@ app.controller('bankbillImportCtrl', function($scope,$state,toastr,bankbillSer,$
         }
     });
 
-
-    $scope.updataSel = function(){
+    $scope.updataSel =function(){
         var fd = new FormData();
-        var file = document.getElementById('updata').files[0];
+        var file =document.getElementById('updata').files[0];
         fd.append('files', file);
         $http({
             method: 'POST',
             url: '/updateCheck',
-            headers: {
+            headers:{
                 'Content-Type': undefined
             },
             data: fd,
-            transformRequest: function (data, headersGetter) {
+            transformRequest: function (data, headersGetter){
                 var formData = new FormData();
                 angular.forEach(data, function (value, key) {
                     formData.append(key, value);
                 });
                 return formData;
-
             }
-        },function (data) {
+        },function (data){
             console.info(data);
+
         });
+    }
+
+    $scope.upload= function(data,){
+     var formData = new FormData();
+
+
     }
 
 
